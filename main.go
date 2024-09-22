@@ -3,9 +3,14 @@ package main
 import (
 	"github.com/semper-proficiens/devbriefs-meta/external/externalapi"
 	"log"
+	"log/slog"
+	"os"
 )
 
 func main() {
+
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	slog.SetDefault(logger)
 
 	// StackExchange API calls
 	seAllTimeQuestions, err := externalapi.SEGetTotalQuestions("go")
