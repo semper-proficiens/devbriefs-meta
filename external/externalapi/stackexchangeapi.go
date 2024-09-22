@@ -12,7 +12,7 @@ import (
 
 const baseQuestionsURL = "https://api.stackexchange.com/2.3/questions"
 
-type TotalResponse struct {
+type SETotalQuestions struct {
 	Total int `json:"total"`
 }
 
@@ -35,7 +35,7 @@ func SEGetTotalQuestions(language string) (int, error) {
 	}
 	defer resp.Body.Close()
 
-	var questions TotalResponse
+	var questions SETotalQuestions
 	if err = json.NewDecoder(resp.Body).Decode(&questions); err != nil {
 		return 0, fmt.Errorf("error from decode response:%s", err)
 	}
@@ -69,7 +69,7 @@ func SEGetTotalQuestionsFromLastMonth(language string) (int, error) {
 	}
 	defer resp.Body.Close()
 
-	var questions TotalResponse
+	var questions SETotalQuestions
 	if err = json.NewDecoder(resp.Body).Decode(&questions); err != nil {
 		return 0, fmt.Errorf("error from decode response:%s", err)
 	}
@@ -102,7 +102,7 @@ func SEGetTotalQuestionsThisMonth(language string) (int, error) {
 	}
 	defer resp.Body.Close()
 
-	var questions TotalResponse
+	var questions SETotalQuestions
 	if err = json.NewDecoder(resp.Body).Decode(&questions); err != nil {
 		return 0, fmt.Errorf("error from decode response:%s", err)
 	}

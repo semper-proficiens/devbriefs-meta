@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+
+	// StackExchange API calls
 	seAllTimeQuestions, err := externalapi.SEGetTotalQuestions("go")
 	if err != nil {
 		log.Fatal("Failed to get total StackExchange total questions:", err)
@@ -23,4 +25,23 @@ func main() {
 		log.Fatal("Failed to get total StackExchange total questions this month:", err)
 	}
 	log.Println("StackExchange total questions since beginning of month:", seAllQuestionsThisMonth)
+
+	// GitHub REST API Calls
+	ghReposCreatedAllTime, err := externalapi.GHGetReposCreatedAllTime("go")
+	if err != nil {
+		log.Fatal("Failed to get github repos created all time:", err)
+	}
+	log.Println("Github repos created in total:", ghReposCreatedAllTime)
+
+	ghReposCreatedThisMonth, err := externalapi.GHGetReposCreatedThisMonth("go")
+	if err != nil {
+		log.Fatal("Failed to get github repos created this month:", err)
+	}
+	log.Println("Github repos created this month:", ghReposCreatedThisMonth)
+
+	ghReposCreatedLastMonth, err := externalapi.GHGetReposCreatedLastMonth("go")
+	if err != nil {
+		log.Fatal("Failed to get github repos created last month:", err)
+	}
+	log.Println("Github repos created last month:", ghReposCreatedLastMonth)
 }
