@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"github.com/joho/godotenv"
 	"github.com/semper-proficiens/devbriefs-meta/external/externalapi"
 	"log"
 	"log/slog"
@@ -51,4 +53,18 @@ func main() {
 		log.Fatal("Failed to get github repos created last month:", err)
 	}
 	log.Println("Github repos created last month:", ghReposCreatedLastMonth)
+
+	// GTrends API
+	apiKey := os.Getenv("G_TRENDS_API") // Replace with your SerpApi API key
+	total, err := externalapi.GTGetGoogleSearchesFor(apiKey, defaultLanguage)
+	if err != nil {
+		log.Fatalf("Error: %s", err)
+	}
+	fmt.Printf("Total searches for 'go' in the programming category: %d\n", total)
+}
+
+func init() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal(err)
+	}
 }
