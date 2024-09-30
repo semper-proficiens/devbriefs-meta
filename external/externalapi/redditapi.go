@@ -96,7 +96,7 @@ func GetRedditPosts(token string, after string) (RedditPost, error) {
 	}
 
 	var redditPost RedditPost
-	if err := json.Unmarshal(body, &redditPost); err != nil {
+	if err = json.Unmarshal(body, &redditPost); err != nil {
 		return RedditPost{}, fmt.Errorf("failed to decode posts response: %w", err)
 	}
 

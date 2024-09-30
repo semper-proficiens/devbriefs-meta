@@ -44,7 +44,7 @@ func GTGetGoogleSearchesFor(apiKey, language string) (int, error) {
 
 	// Decode the JSON response
 	var gtResponse GoogleTrendsResponse
-	if err = json.NewDecoder(resp.Body).Decode(gtResponse); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&gtResponse); err != nil {
 		return 0, fmt.Errorf("error from decode response: %s", err)
 	}
 
